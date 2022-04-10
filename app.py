@@ -67,14 +67,14 @@ def predict():
     #Neural Network Model Prediction
     nn_predicted_class = NN_model.predict(final_features)
     nn_predicted_prob = NN_model.predict_proba(final_features)
-    print("Predicted Class :", nn_predicted_class[0][0])
+    print("Predicted Class :", nn_predicted_class[0])
     nn_confidence = nn_predicted_prob[0][1] if nn_predicted_class == 1 else nn_predicted_prob[0][0] 
     print("Confidence :", nn_confidence)
     
     return render_template('index.html', rfc_prediction_class=rfc_predicted_class[0], rfc_prediction_prob =rfc_confidence,
                                          svc_prediction_class=svc_predicted_class[0], svc_prediction_prob=svc_confidence,
                                          dtc_prediction_class=dtc_predicted_class[0], dtc_prediction_prob=dtc_confidence,
-                                         nn_prediction_class=nn_predicted_class,      nn_prediction_prob=nn_confidence)
+                                         nn_prediction_class=nn_predicted_class[0],      nn_prediction_prob=nn_confidence)
         
 @app.route('/predict_api',methods=['POST'])
 def results():
